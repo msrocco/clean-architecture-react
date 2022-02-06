@@ -1,14 +1,14 @@
 import { HttpPostClientSpy } from '../../test/mock-http-client';
-import { RemoveAuthentication } from './remove-authentication';
+import { RemoteAuthentication } from './remote-authentication';
 
 type SutTypes = {
-  sut: RemoveAuthentication,
+  sut: RemoteAuthentication,
   httpPostClientSpy: HttpPostClientSpy
 }
 
 const makeSut = (url: string = 'any_url'): SutTypes => {
   const httpPostClientSpy = new HttpPostClientSpy();
-  const sut = new RemoveAuthentication(url, httpPostClientSpy);
+  const sut = new RemoteAuthentication(url, httpPostClientSpy);
 
   return {
     sut,
