@@ -19,7 +19,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe('Login Compon ent', () => {
+describe('Login Component', () => {
   afterEach(cleanup)
 
   test('Should start with initial state', () => {
