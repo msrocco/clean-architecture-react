@@ -13,7 +13,10 @@ import Styles from './login-styles.scss';
 const Login: React.FC = () => {
   const [state] = useState({
     isLoading: false,
-    errorMessage: ''
+    errorMessage: '',
+    emailError: 'Campo obrigatório',
+    passwordError: 'Campo obrigatório',
+    mainError: ''
   });
 
   return (
