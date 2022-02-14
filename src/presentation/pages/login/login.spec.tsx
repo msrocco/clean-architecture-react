@@ -120,7 +120,7 @@ describe('Login Component', () => {
 
     simulateValidSubmit(sut)
 
-    const spinner = sut.queryAllByTestId('spinner')
+    const spinner = sut.getByTestId('spinner')
     expect(spinner).toBeTruthy()
   })
 
