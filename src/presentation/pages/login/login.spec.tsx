@@ -62,7 +62,6 @@ describe('Login Component', () => {
 
   test('Should start with initial state', () => {
     const validationError = faker.random.words()
-
     const { sut } = makeSut({ validationError })
 
     const errorWrap = sut.getByTestId('error-wrap')
@@ -77,7 +76,6 @@ describe('Login Component', () => {
 
   test('Should show email error if Validation fails', () => {
     const validationError = faker.random.words()
-
     const { sut } = makeSut({ validationError })
 
     populateEmailField(sut)
@@ -86,7 +84,6 @@ describe('Login Component', () => {
 
   test('Should show password error if Validation fails', () => {
     const validationError = faker.random.words()
-
     const { sut } = makeSut({ validationError })
 
     populatePasswordField(sut)
@@ -146,5 +143,15 @@ describe('Login Component', () => {
     simulateValidSubmit(sut)
 
     expect(authenticationSpy.callsCount).toBe(1)
+  })
+
+  test('Should not call Authentication with invalid form', () => {
+    const validationError = faker.random.words()
+    const { sut, authenticationSpy } = makeSut({ validationError })
+
+    populateEmailField(sut)
+    fireEvent.submit(sut.getByTestId('form'))
+
+    expect(authenticationSpy.callsCount).toBe(0)
   })
 });
