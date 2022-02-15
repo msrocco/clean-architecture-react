@@ -9,7 +9,7 @@ import {
 } from '@/presentation/components';
 import Context from '@/presentation/context/form/formContenxt';
 import { Authentication } from '@/domain/usecases';
-import { Validation } from '@/presentation/protocols/Validation';
+import { Validation } from '@/presentation/protocols/validation';
 
 import Styles from './login-styles.scss';
 
