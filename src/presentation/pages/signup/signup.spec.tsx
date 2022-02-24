@@ -1,7 +1,7 @@
 import React from 'react'
 import faker from 'faker'
 import { render, cleanup, fireEvent, waitFor, RenderResult } from '@testing-library/react'
-import { UnexpectedError } from '@/domain/errors'
+import { EmailInUseError, UnexpectedError } from '@/domain/errors'
 import { SignUp } from '@/presentation/pages'
 import { Helper, ValidationStub, AddAccountSpy } from '@/presentation/test'
 
@@ -178,9 +178,9 @@ describe('SignUp Component', () => {
 
   test('Should present error if AddAccount fails', async () => {
     const { sut, addAccountSpy } = makeSut()
-    const error = new UnexpectedError()
+    const error = new EmailInUseError()
 
-    jest.spyOn(addAccountSpy, 'add').mockReturnValueOnce(Promise.reject(error))
+    jest.spyOn(addAccountSpy, 'add').mockRejectedValueOnce(error)
     await simulateValidSubmit(sut)
 
     Helper.testElementText(sut, 'main-error', error.message)
