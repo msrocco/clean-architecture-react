@@ -26,7 +26,7 @@ const makeSut = (params?: SutParams): SutTypes => {
   const saveAccessTokenMock = new SaveAccessTokenMock()
 
   const sut = render(
-    <Router history={history} >
+    <Router history={history}>
       <Login
         validation={validationStub}
         authentication={authenticationSpy}
