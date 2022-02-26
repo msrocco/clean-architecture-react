@@ -6,12 +6,20 @@
   },
   "extends": [
     "standard-with-typescript",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:cypress/recommended"
   ],
-  "plugins": ["react"],
-  "parserOptions": {
-    "project": "./tsconfig.json"
+  "env": {
+    "cypress/globals": true
   },
+  "plugins": ["react", "cypress"],
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./src/main/test/cypress/tsconfig.json"
+    ]
+  },
+  "ignorePatterns": ["babel.config.js"],
   "rules": {
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
