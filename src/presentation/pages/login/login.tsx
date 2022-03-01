@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import {
@@ -8,8 +8,8 @@ import {
   FormStatus,
   SubmitButton
 } from '@/presentation/components';
-import Context from '@/presentation/context/form/formContenxt';
-import { Authentication, UpdateCurrentAccount } from '@/domain/usecases';
+import { FormContext, ApiContext } from '@/presentation/context';
+import { Authentication } from '@/domain/usecases';
 import { Validation } from '@/presentation/protocols/validation';
 
 import Styles from './login-styles.scss';
@@ -17,10 +17,10 @@ import Styles from './login-styles.scss';
 type Props = {
   validation: Validation;
   authentication: Authentication;
-  updateCurrentAccount: UpdateCurrentAccount
 };
 
-const Login: React.FC<Props> = ({ validation, authentication, updateCurrentAccount }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+  const { setCurrentAccount } = useContext(ApiContext)
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -63,7 +63,7 @@ const Login: React.FC<Props> = ({ validation, authentication, updateCurrentAccou
         password: state.password
       });
 
-      await updateCurrentAccount.save(account);
+      setCurrentAccount(account);
 
       history.replace('/')
     } catch (error) {
@@ -79,7 +79,7 @@ const Login: React.FC<Props> = ({ validation, authentication, updateCurrentAccou
     <div className={Styles.loginWrap}>
       <LoginHeader />
 
-      <Context.Provider value={{ state, setState }}>
+      <FormContext.Provider value={{ state, setState }}>
         <form
           data-testid="form"
           className={Styles.form}
@@ -103,7 +103,7 @@ const Login: React.FC<Props> = ({ validation, authentication, updateCurrentAccou
 
           <FormStatus />
         </form>
-      </Context.Provider>
+      </FormContext.Provider>
 
       <Footer />
     </div>
