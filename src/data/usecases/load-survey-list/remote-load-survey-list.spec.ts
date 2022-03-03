@@ -3,7 +3,7 @@ import { HttpGetClientSpy } from '@/data/test';
 import { HttpStatusCode } from '@/data/protocols/http';
 import { UnexpectedError } from '@/domain/errors';
 import { SurveyModel } from '@/domain/models';
-import { mockSurveyList } from '@/domain/test';
+import { mockSurveyListModel } from '@/domain/test';
 import { RemoteLoadSurveyList } from './remote-load-survey-list';
 
 type SutTypes = {
@@ -61,7 +61,7 @@ describe('RemoteLoadSurveyList', () => {
 
   test('Should return a list of SurveyModel if HttpPostClient returns 200', async () => {
     const { sut, httpGetClientSpy } = makeSut()
-    const httpResult = mockSurveyList()
+    const httpResult = mockSurveyListModel()
 
     httpGetClientSpy.response = {
       statusCode: HttpStatusCode.ok,
