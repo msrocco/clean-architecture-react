@@ -3,7 +3,7 @@ import { HttpPostClientSpy } from '@/data/test';
 import { HttpStatusCode } from '@/data/protocols/http';
 import { EmailInUseError, UnexpectedError } from '@/domain/errors';
 import { mockAddAcountModel, mockAddAcountParams } from '@/domain/test';
-import { RemoteAddAccount } from '@/data/usecases/add-account/remote-add-account';
+import { RemoteAddAccount } from '@/data/usecases';
 
 type SutTypes = {
   sut: RemoteAddAccount,

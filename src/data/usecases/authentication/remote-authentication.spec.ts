@@ -1,5 +1,5 @@
 import faker from 'faker';
-import { RemoteAuthentication } from '@/data/usecases/authentication/remote-authentication';
+import { RemoteAuthentication } from '@/data/usecases';
 import { HttpPostClientSpy } from '@/data/test';
 import { HttpStatusCode } from '@/data/protocols/http';
 import { mockAuthenticationModel, mockAuthenticationParams } from '@/domain/test';
