@@ -1,10 +1,6 @@
 import faker from 'faker'
 import { screen, fireEvent } from '@testing-library/react'
 
-export const testChildCount = (fieldName: string, count: number): void => {
-  expect(screen.getByTestId(fieldName).children).toHaveLength(count)
-}
-
 export const testStatusForField = (fieldName: string, validationError: string = ''): void => {
   const wrap = screen.getByTestId(`${fieldName}-wrap`)
   const field = screen.getByTestId(fieldName)
