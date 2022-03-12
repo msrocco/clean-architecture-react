@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import FlipMove from 'react-flip-move'
 import { LoadSurveyResult } from '@/domain/usecases'
 import { Footer, Header, Loading, Calendar, Error } from '@/presentation/components'
@@ -10,6 +11,8 @@ type Props = {
 }
 
 const SurveyResult: React.FC<Props> = ({ loadSurveyResult }: Props) => {
+  const { goBack } = useHistory()
+
   const [state, setState] = useState({
     isLoading: false,
     error: '',
@@ -48,7 +51,7 @@ const SurveyResult: React.FC<Props> = ({ loadSurveyResult }: Props) => {
                 </li>
               ))}
             </FlipMove>
-            <button>Voltar</button>
+            <button data-testid="back-button" onClick={goBack}>Voltar</button>
           </>
         )}
 
