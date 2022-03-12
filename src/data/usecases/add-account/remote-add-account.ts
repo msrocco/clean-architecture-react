@@ -1,6 +1,6 @@
-import { HttpClient, HttpStatusCode } from '@/data/protocols/http';
-import { EmailInUseError, UnexpectedError } from '@/domain/errors';
-import { AddAccount } from '@/domain/usecases';
+import { HttpClient, HttpStatusCode } from '@/data/protocols/http'
+import { EmailInUseError, UnexpectedError } from '@/domain/errors'
+import { AddAccount } from '@/domain/usecases'
 
 export class RemoteAddAccount implements AddAccount {
   constructor (
@@ -13,7 +13,7 @@ export class RemoteAddAccount implements AddAccount {
       url: this.url,
       method: 'post',
       body: params
-    });
+    })
 
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok: return httpResponse.body

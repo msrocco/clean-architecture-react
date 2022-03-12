@@ -1,5 +1,5 @@
-import { makeSignUpValidation } from '@/main/factories/pages';
-import { CompareFieldsValidation, EmailValidation, MinLengthValidation, RequiredFieldValidation, ValidationComposite } from '@/validation/validators';
+import { makeSignUpValidation } from '@/main/factories/pages'
+import { CompareFieldsValidation, EmailValidation, MinLengthValidation, RequiredFieldValidation, ValidationComposite } from '@/validation/validators'
 
 describe('SignUpValidationFactory', () => {
   test('Should make ValidationComposite with correct validations ', () => {
@@ -14,5 +14,5 @@ describe('SignUpValidationFactory', () => {
       new RequiredFieldValidation('passwordConfirmation'),
       new CompareFieldsValidation('passwordConfirmation', 'password')
     ]))
-  });
-});
+  })
+})

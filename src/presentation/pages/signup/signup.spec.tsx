@@ -71,7 +71,7 @@ describe('SignUp Component', () => {
     Helper.testStatusForField('email', validationError)
     Helper.testStatusForField('password', validationError)
     Helper.testStatusForField('passwordConfirmation', validationError)
-  });
+  })
 
   test('Should show name error if Validation fails', () => {
     const validationError = faker.random.words()

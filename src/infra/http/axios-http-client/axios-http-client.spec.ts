@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { mockHttpRequest } from '@/data/test';
-import { mockAxios, mockHttpResponse } from '@/infra/test';
-import { AxiosHttpClient } from './axios-http-client';
+import { mockHttpRequest } from '@/data/test'
+import { mockAxios, mockHttpResponse } from '@/infra/test'
+import { AxiosHttpClient } from './axios-http-client'
 
 jest.mock('axios')
 
@@ -33,7 +33,7 @@ describe('AxiosHttpClient', () => {
       data: request.body,
       headers: request.headers
     })
-  });
+  })
 
   test('Should return correct response on axios', async () => {
     const { sut, mockedAxios } = makeSut()
@@ -44,7 +44,7 @@ describe('AxiosHttpClient', () => {
       statusCode: axiosResponse.status,
       body: axiosResponse.data
     })
-  });
+  })
 
   test('Should return correct error on axios', () => {
     const { sut, mockedAxios } = makeSut()
@@ -54,5 +54,5 @@ describe('AxiosHttpClient', () => {
 
     const promise = sut.request(mockHttpRequest())
     expect(promise).toEqual(mockedAxios.request.mock.results[0].value)
-  });
-});
+  })
+})

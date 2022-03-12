@@ -29,10 +29,10 @@ describe('PrivateRoute', () => {
   test('Should redirect to /login if token is empty', () => {
     const { history } = makeSut(null)
     expect(history.location.pathname).toBe('/login')
-  });
+  })
 
   test('Should render component if token is not empty', () => {
     const { history } = makeSut()
     expect(history.location.pathname).toBe('/')
-  });
-});
+  })
+})

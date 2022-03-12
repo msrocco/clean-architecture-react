@@ -18,7 +18,7 @@ describe('Input Component', () => {
     const sut = makeSut(field)
     const input = sut.getByTestId(field) as HTMLInputElement
     expect(input.readOnly).toBe(true)
-  });
+  })
 
   test('Should remove readyOnly on focus', () => {
     const field = faker.database.column()
@@ -26,7 +26,7 @@ describe('Input Component', () => {
     const input = sut.getByTestId(field) as HTMLInputElement
     fireEvent.focus(input)
     expect(input.readOnly).toBe(false)
-  });
+  })
 
   test('Should focus input on label click', () => {
     const field = faker.database.column()
@@ -35,5 +35,5 @@ describe('Input Component', () => {
     const label = sut.getByTestId(`${field}-label`)
     fireEvent.click(label)
     expect(document.activeElement).toBe(input)
-  });
-});
+  })
+})

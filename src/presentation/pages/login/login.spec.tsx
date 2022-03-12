@@ -3,12 +3,12 @@ import faker from 'faker'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
-import { InvalidCredentialsError } from '@/domain/errors';
+import { InvalidCredentialsError } from '@/domain/errors'
 import { AuthenticationSpy } from '@/domain/test'
 import { Authentication } from '@/domain/usecases'
 import { ApiContext } from '@/presentation/context'
-import { Login } from '@/presentation/pages';
-import { ValidationStub, Helper } from '@/presentation/test';
+import { Login } from '@/presentation/pages'
+import { ValidationStub, Helper } from '@/presentation/test'
 
 type SutTypes = {
   authenticationSpy: AuthenticationSpy
@@ -62,7 +62,7 @@ describe('Login Component', () => {
     expect(screen.getByTestId('submit')).toBeDisabled()
     Helper.testStatusForField('email', validationError)
     Helper.testStatusForField('password', validationError)
-  });
+  })
 
   test('Should show email error if Validation fails', () => {
     const validationError = faker.random.words()
@@ -165,4 +165,4 @@ describe('Login Component', () => {
     expect(history.length).toBe(2)
     expect(history.location.pathname).toBe('/signup')
   })
-});
+})

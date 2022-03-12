@@ -113,7 +113,7 @@ describe('SurveyResult Component', () => {
     await waitFor(() => screen.getByTestId('survey-result'))
     expect(setCurrentAccountMock).toHaveBeenCalledWith(undefined)
     expect(history.location.pathname).toBe('/login')
-  });
+  })
 
   test('Should call LoadSurveyResult on reload', async () => {
     const loadSurveyResultSpy = new LoadSurveyResultSpy()
@@ -123,7 +123,7 @@ describe('SurveyResult Component', () => {
     fireEvent.click(screen.getByTestId('reload'))
     expect(loadSurveyResultSpy.callsCount).toBe(1)
     await waitFor(() => screen.getByTestId('survey-result'))
-  });
+  })
 
   test('Should goto SurveyList on back button click', async () => {
     const { history } = makeSut()

@@ -1,5 +1,5 @@
 import faker from 'faker'
-import { GetStorage } from '@/data/protocols/cache';
+import { GetStorage } from '@/data/protocols/cache'
 
 export class GetStorageSpy implements GetStorage {
   key: string

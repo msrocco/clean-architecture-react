@@ -63,7 +63,7 @@ describe('SurveyResult', () => {
       cy.getByTestId('back-button').click()
       Helper.testUrl('/')
     })
-  });
+  })
 
   describe('save', () => {
     const mockUnexpectedError = (): void => Http.mockServerError(path, 'PUT')
@@ -108,5 +108,5 @@ describe('SurveyResult', () => {
         assert.notExists(li.find('[data-testid="image"]'))
       })
     })
-  });
+  })
 })

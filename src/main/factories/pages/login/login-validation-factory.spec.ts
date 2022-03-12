@@ -1,5 +1,5 @@
-import { makeLoginValidation } from '@/main/factories/pages';
-import { EmailValidation, MinLengthValidation, RequiredFieldValidation, ValidationComposite } from '@/validation/validators';
+import { makeLoginValidation } from '@/main/factories/pages'
+import { EmailValidation, MinLengthValidation, RequiredFieldValidation, ValidationComposite } from '@/validation/validators'
 
 describe('LoginValidation', () => {
   test('Should make ValidationComposite with correct validations ', () => {
@@ -10,5 +10,5 @@ describe('LoginValidation', () => {
       new RequiredFieldValidation('password'),
       new MinLengthValidation('password', 5)
     ]))
-  });
-});
+  })
+})

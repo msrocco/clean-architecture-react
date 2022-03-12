@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { makeLogin, makeSignUp, makeSurveyList, makeSurveyResult } from '@/main/factories/pages'
 import { ApiContext } from '@/presentation/context'
-import { getCurrentAccountAdapter, setCurrentAccountAdapter } from '@/main/adapters/current-account-adapter';
-import { PrivateRoute } from '@/presentation/components';
+import { getCurrentAccountAdapter, setCurrentAccountAdapter } from '@/main/adapters/current-account-adapter'
+import { PrivateRoute } from '@/presentation/components'
 
 const Router: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ const Router: React.FC = () => {
         </Switch>
       </BrowserRouter>
     </ApiContext.Provider>
-  );
-};
+  )
+}
 
-export default Router;
+export default Router

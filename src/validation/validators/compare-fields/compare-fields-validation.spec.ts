@@ -1,6 +1,6 @@
 import faker from 'faker'
-import { CompareFieldsValidation } from './compare-fields-validation';
-import { InvalidFieldError } from '@/validation/errors';
+import { CompareFieldsValidation } from './compare-fields-validation'
+import { InvalidFieldError } from '@/validation/errors'
 
 const makeSut = (field: string, fieldToCompare: string): CompareFieldsValidation => new CompareFieldsValidation(field, fieldToCompare)
 
@@ -14,7 +14,7 @@ describe('CompareFieldsValidation', () => {
       [fieldToCompare]: 'other_value'
     })
     expect(error).toEqual(new InvalidFieldError())
-  });
+  })
 
   test('Should return falsy if compare is valid', () => {
     const field = 'any_field'
@@ -26,5 +26,5 @@ describe('CompareFieldsValidation', () => {
       [fieldToCompare]: value
     })
     expect(error).toBeFalsy()
-  });
-});
+  })
+})

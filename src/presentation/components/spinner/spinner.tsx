@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import Styles from './spinner-styles.scss'
 
@@ -16,7 +16,7 @@ const Spinner: React.FC<Props> = ({ isNegative, ...props }: Props) => {
       <div />
       <div />
     </div>
-  );
-};
+  )
+}
 
-export default Spinner;
+export default Spinner

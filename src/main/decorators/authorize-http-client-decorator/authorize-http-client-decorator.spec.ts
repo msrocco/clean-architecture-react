@@ -1,8 +1,8 @@
 import faker from 'faker'
-import { GetStorageSpy, mockHttpRequest, HttpClientSpy } from '@/data/test';
-import { HttpRequest } from '@/data/protocols/http';
-import { mockAccountModel } from '@/domain/test';
-import { AuthorizeHttpClientDecorator } from '@/main/decorators';
+import { GetStorageSpy, mockHttpRequest, HttpClientSpy } from '@/data/test'
+import { HttpRequest } from '@/data/protocols/http'
+import { mockAccountModel } from '@/domain/test'
+import { AuthorizeHttpClientDecorator } from '@/main/decorators'
 
 type SutTypes = {
   sut: AuthorizeHttpClientDecorator
@@ -27,7 +27,7 @@ describe('AuthorizeHttpGetClientDecorator', () => {
     const { sut, getStorageSpy } = makeSut()
     await sut.request(mockHttpRequest())
     expect(getStorageSpy.key).toBe('account')
-  });
+  })
 
   test('Should not add headers if getStorage is invalid', async () => {
     const { sut, httpClientSpy } = makeSut()
@@ -42,7 +42,7 @@ describe('AuthorizeHttpGetClientDecorator', () => {
     expect(httpClientSpy.url).toBe(httpRequest.url)
     expect(httpClientSpy.method).toBe(httpRequest.method)
     expect(httpClientSpy.headers).toEqual(httpRequest.headers)
-  });
+  })
 
   test('Should add headers to HttpClient', async () => {
     const { sut, getStorageSpy, httpClientSpy } = makeSut()
@@ -57,7 +57,7 @@ describe('AuthorizeHttpGetClientDecorator', () => {
     expect(httpClientSpy.headers).toEqual({
       'x-access-token': getStorageSpy.value.accessToken
     })
-  });
+  })
 
   test('Should merge headers to HttpClient', async () => {
     const { sut, getStorageSpy, httpClientSpy } = makeSut()
@@ -77,11 +77,11 @@ describe('AuthorizeHttpGetClientDecorator', () => {
       field,
       'x-access-token': getStorageSpy.value.accessToken
     })
-  });
+  })
 
   test('Should return the same results as HttpClient', async () => {
     const { sut, httpClientSpy } = makeSut()
     const httpResponse = await sut.request(mockHttpRequest())
     expect(httpResponse).toEqual(httpClientSpy.response)
-  });
-});
+  })
+})

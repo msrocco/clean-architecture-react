@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
 import {
   LoginHeader,
@@ -7,17 +7,17 @@ import {
   Footer,
   FormStatus,
   SubmitButton
-} from '@/presentation/components';
-import { FormContext, ApiContext } from '@/presentation/context';
-import { Validation } from '@/presentation/protocols/validation';
-import { AddAccount } from '@/domain/usecases';
+} from '@/presentation/components'
+import { FormContext, ApiContext } from '@/presentation/context'
+import { Validation } from '@/presentation/protocols/validation'
+import { AddAccount } from '@/domain/usecases'
 
-import Styles from './signup-styles.scss';
+import Styles from './signup-styles.scss'
 
 type Props = {
-  validation: Validation;
-  addAccount: AddAccount;
-};
+  validation: Validation
+  addAccount: AddAccount
+}
 
 const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
   const { setCurrentAccount } = useContext(ApiContext)
@@ -34,41 +34,41 @@ const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
     passwordConfirmation: '',
     passwordConfirmationError: '',
     mainError: ''
-  });
+  })
 
   useEffect(() => {
     validate('name')
-  }, [state.name]);
+  }, [state.name])
 
   useEffect(() => {
     validate('email')
-  }, [state.email]);
+  }, [state.email])
 
   useEffect(() => {
     validate('password')
-  }, [state.password]);
+  }, [state.password])
 
   useEffect(() => {
     validate('passwordConfirmation')
-  }, [state.passwordConfirmation]);
+  }, [state.passwordConfirmation])
 
   const validate = (field: string): void => {
     const { name, email, password, passwordConfirmation } = state
     const formData = { name, email, password, passwordConfirmation }
 
-    setState(prevState => ({ ...prevState, [`${field}Error`]: validation.validate(field, formData) }));
-    setState(prevState => ({ ...prevState, isFormInvalid: !!prevState.nameError || !!prevState.emailError || !!prevState.passwordError || !!prevState.passwordConfirmationError }));
+    setState(prevState => ({ ...prevState, [`${field}Error`]: validation.validate(field, formData) }))
+    setState(prevState => ({ ...prevState, isFormInvalid: !!prevState.nameError || !!prevState.emailError || !!prevState.passwordError || !!prevState.passwordConfirmationError }))
   }
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
-      if (state.isLoading || state.isFormInvalid) return;
+      if (state.isLoading || state.isFormInvalid) return
 
-      setState(prevState => ({ ...prevState, isLoading: true }));
+      setState(prevState => ({ ...prevState, isLoading: true }))
 
       const account = await addAccount.add({
         name: state.name,
@@ -77,16 +77,16 @@ const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
         passwordConfirmation: state.passwordConfirmation
       })
 
-      setCurrentAccount(account);
+      setCurrentAccount(account)
       history.replace('/')
     } catch (error) {
       setState(prevState => ({
         ...prevState,
         isLoading: false,
         mainError: error.message
-      }));
+      }))
     }
-  };
+  }
 
   return (
     <div className={Styles.signupWrap}>
@@ -117,7 +117,7 @@ const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
 
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

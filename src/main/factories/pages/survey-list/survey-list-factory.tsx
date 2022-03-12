@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { SurveyList } from '@/presentation/pages'
-import { makeRemoteLoadSurveyList } from '@/main/factories/usecases';
+import { makeRemoteLoadSurveyList } from '@/main/factories/usecases'
 
 export const makeSurveyList: React.FC = () => {
   return (

@@ -3,8 +3,8 @@ import { Router } from 'react-router-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { createMemoryHistory, MemoryHistory } from 'history'
 import { SurveyItem } from '@/presentation/pages/survey-list/components'
-import { mockSurveyModel } from '@/domain/test';
-import { IconName } from '@/presentation/components';
+import { mockSurveyModel } from '@/domain/test'
+import { IconName } from '@/presentation/components'
 
 type SutTypes = {
   history: MemoryHistory
@@ -37,7 +37,7 @@ describe('SurveyItem', () => {
     expect(screen.getByTestId('day')).toHaveTextContent('10')
     expect(screen.getByTestId('month')).toHaveTextContent('jan')
     expect(screen.getByTestId('year')).toHaveTextContent('2020')
-  });
+  })
 
   test('Should render with correct values', () => {
     const survey = Object.assign(mockSurveyModel(), {
@@ -52,12 +52,12 @@ describe('SurveyItem', () => {
     expect(screen.getByTestId('day')).toHaveTextContent('03')
     expect(screen.getByTestId('month')).toHaveTextContent('mai')
     expect(screen.getByTestId('year')).toHaveTextContent('2019')
-  });
+  })
 
   test('Should go to SurveyResult', () => {
     const survey = mockSurveyModel()
     const { history } = makeSut(survey)
     fireEvent.click(screen.getByTestId('link'))
     expect(history.location.pathname).toBe(`/surveys/${survey.id}`)
-  });
-});
+  })
+})
