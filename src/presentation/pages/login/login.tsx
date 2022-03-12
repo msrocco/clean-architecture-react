@@ -68,11 +68,11 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 
       history.replace('/')
     } catch (error) {
-      setState({
-        ...state,
+      setState(prevState => ({
+        ...prevState,
         isLoading: false,
         mainError: error.message
-      });
+      }));
     }
   };
 
