@@ -5,11 +5,11 @@ import { RecoilRoot } from 'recoil'
 import { createMemoryHistory } from 'history'
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import { InvalidCredentialsError } from '@/domain/errors'
-import { AuthenticationSpy } from '@/domain/test'
+import { AuthenticationSpy, mockAccountModel } from '@/domain/test'
 import { Authentication } from '@/domain/usecases'
-import { ApiContext } from '@/presentation/context'
 import { Login } from '@/presentation/pages'
 import { ValidationStub, Helper } from '@/presentation/test'
+import { currentAccountState } from '@/presentation/components'
 
 type SutTypes = {
   authenticationSpy: AuthenticationSpy
@@ -27,17 +27,16 @@ const makeSut = (params?: SutParams): SutTypes => {
   validationStub.errorMessage = params?.validationError
   const authenticationSpy = new AuthenticationSpy()
   const setCurrentAccountMock = jest.fn()
+  const mockedState = { setCurrentAccount: setCurrentAccountMock, getCurrentAccount: () => mockAccountModel() }
 
   render(
-    <RecoilRoot>
-      <ApiContext.Provider value={{ setCurrentAccount: setCurrentAccountMock }}>
-        <Router history={history}>
-          <Login
-            validation={validationStub}
-            authentication={authenticationSpy}
-          />
-        </Router>
-      </ApiContext.Provider>
+    <RecoilRoot initializeState={({ set }) => set(currentAccountState, mockedState)}>
+      <Router history={history}>
+        <Login
+          validation={validationStub}
+          authentication={authenticationSpy}
+        />
+      </Router>
     </RecoilRoot>
   )
 
@@ -50,7 +49,6 @@ const makeSut = (params?: SutParams): SutTypes => {
 const simulateValidSubmit = async (email = faker.internet.email(), password = faker.internet.password()): Promise<void> => {
   Helper.populateField('email', email)
   Helper.populateField('password', password)
-
   const form = screen.getByTestId('form')
   fireEvent.submit(form)
   await waitFor(() => form)
