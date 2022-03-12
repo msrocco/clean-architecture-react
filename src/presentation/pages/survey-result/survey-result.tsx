@@ -18,7 +18,7 @@ const SurveyResult: React.FC<Props> = ({ loadSurveyResult }: Props) => {
   })
 
   const handleError = useErrorHandler((error: Error) => {
-    setState(old => ({ ...old, surveyResult: null, error: error.message }))
+    setState(prevState => ({ ...prevState, error: error.message }))
   })
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const SurveyResult: React.FC<Props> = ({ loadSurveyResult }: Props) => {
       .catch(handleError)
   }, [state.reload])
 
-  const reload = (): void => setState(prevState => ({ isLoading: false, surveyResult: null, error: '', reload: !prevState.reload }))
+  const reload = (): void => setState(prevState => ({ ...prevState, error: '', reload: !prevState.reload }))
 
   return (
     <div className={Styles.surveyResultWrap}>
